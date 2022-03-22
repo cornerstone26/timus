@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <string.h>
 int pof(int n){
     if (n == 1){
         printf("%d", 1);
@@ -28,13 +28,15 @@ int pof(int n){
         }
         
     }
-    printf("%d", -1);    //Không có nghiệm 1 chữ số nên trả về -1
+    printf("%d", -1);    
     return 0;
 }
         
+        
+        
 int main(){
     int n;              
-    scanf("%d", &n);       
+    scanf("%d", &n);        
     pof(n);
     return 0;
 }
