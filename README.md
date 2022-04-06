@@ -1,7 +1,7 @@
  # tasks
  |1|2|3|4|
 |---|---|---|---|
-| [done] 1014 (1 point) | [] 1471| [done] 1009|  1723|
+| [done] 1014 (1 point) | [done] 1471| [done] 1009|  1723|
 | [done] 1613 (2 points) | [done] 1654| [done] 1073| 1297|
 | [done] 1112 (3 points) |[done] 1126| [done] 1586| [done] 1354|
 | [done] 1303 (4 points) | [done] 1306| [] 1152| 1102|
