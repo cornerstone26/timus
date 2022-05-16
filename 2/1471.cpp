@@ -49,7 +49,6 @@ int LCA(int x, int y) {
     return x;
 }
 
-
 int min_distance(int x, int y){
     int ans = 0;
     if (x == y){
