@@ -19,8 +19,6 @@ void prt_mat(int *a, int n){
     cout << endl;
 }
 
-
-
 void DFS(int u, int v) {
     l_node[u] = 0;
     r_node[u] = 0;
@@ -38,13 +36,6 @@ void DFS(int u, int v) {
 }
 
 int calc(int u, int k){
-    // cout << " u = " << u << " k = " << k << endl; 
-    // for (int i = 0; i < n; i ++){
-    //     for (int j = 0; j < n; j++){
-    //         cout << dp[i][j] << " ";
-    //     }
-    //     cout << endl;
-    // }
     int ret = -2, l, r;
     if (dp[u][k] != -1) return dp[u][k];
     if (k == 0){
@@ -97,10 +88,7 @@ void solve(){
     }
 
     DFS(1, 0);
-    calc(1, q);
-    // prt_mat(l_node, n);
-    // prt_mat(r_node, n);
-    
+    calc(1, q);   
     cout << dp[1][q];
 }
 
