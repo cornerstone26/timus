@@ -1,43 +1,57 @@
-#include <stdio.h>
-#include <iostream>
+#include <cstdio>
 #include <cstring>
+#include <algorithm>
+
 using namespace std;
-void prt(int a[], int n){
-    for (int i = 0; i < n; i++){
-        cout << a[i] << " ";
-    }
-}
-int main(){
-    int N;
-    cin >> N;
-    int arr[21], subarr[7], res = 0, index = 0;
-    memset(arr, 0, sizeof(arr));
-    int sum = 0;
-    for (int i = 0; i < N; i++){
-        cin >> arr[i];
-        sum += arr[i];
-    }
-    //prt(arr, 21);
-    //cout << sum << endl;
 
-    for (int i = 0; i < 21; i += 3){
-        subarr[index++] = arr[i] + arr[i + 1] + arr[i + 2];
-    }
+int N,monsters[20],damage[(1<<20)],memo[(1<<20)];
 
-    for (int i = 0; i < 7; i++){
-        for (int j = i; j < 7; j++){
-            if (subarr[j] < subarr[j + 1]){
-                int tmp = subarr[j + 1];
-                subarr[j + 1] = subarr[j];
-                subarr[j] = tmp;
-            }  
+int solve(int mask){
+    int &ret = memo[mask];
+    
+    if(ret==-1){
+        for(int i = 0;i<N;++i){
+            bool valid = false;
+            
+            for(int j = 0;j<3;++j)
+                if((mask & (1<<((i+j)%N)))==0)
+                    valid = true;
+            
+            if(!valid) continue;
+            
+            int mask2 = mask,x = 0;
+            
+            for(int j = 0;j<3;++j)
+                mask2 |= (1<<((i+j)%N));
+            
+            int aux = solve(mask2)+damage[mask2];
+            if(ret==-1 || aux<ret) ret = aux;
         }
+        
+        if(ret==-1) ret = 0;
     }
-    //prt(subarr, 7);
-    for (int i = 0; i < N/3; i++){
-        sum -= subarr[i];
-        res += sum;
-        //cout << res << " ";
+    
+    return ret;
+}
+
+int main(){
+    scanf("%d",&N);
+    for(int i = 0;i<N;++i)
+        scanf("%d",&monsters[i]);
+    
+    for(int mask = 0;mask<(1<<N);++mask){
+        damage[mask] = 0;
+        
+        for(int i = 0;i<N;++i)
+            if((mask & (1<<i))==0)
+                damage[mask] += monsters[i];
     }
-    cout << res;
+    
+    for (int i = 0; i < (1<<N); i++){
+        printf("%d ", damage[i]);
+    }
+    memset(memo,-1,sizeof(memo));
+    printf("%d\n",solve(0));
+    
+    return 0;
 }
