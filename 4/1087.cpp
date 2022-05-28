@@ -13,6 +13,7 @@ void f_calc(int *k, int *res){
             }
         }
     }
+
     cout << res[n - 1];
 }
 
